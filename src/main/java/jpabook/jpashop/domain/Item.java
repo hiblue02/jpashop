@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import jpabook.jpashop.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,7 +26,14 @@ public abstract class Item extends BaseEntity{
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new java.util.ArrayList<>();
 
-    public List<Category> getCategories() {
-        return categories;
+    /// 비즈니스 로직
+    public void removeStock(int quantity){
+        int remainStock = this.stockQuantity - quantity;
+        if(remainStock < 0){
+            throw new NotEnoughStockException("재고가 충분하지 않습니다.");
+        }
+        this.stockQuantity = remainStock;
     }
+
+
 }
