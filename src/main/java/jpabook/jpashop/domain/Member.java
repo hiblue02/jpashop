@@ -19,6 +19,7 @@ public class Member extends BaseEntity {
     private int age;
 
     @Embedded
+    @Setter
     private Address address;
 
     @OneToMany(mappedBy = "member")

@@ -33,6 +33,7 @@ public class OrderService {
 
         //주문생성
         Order order = Order.createOrder(member, delivery, orderItem);
+        orderRepository.save(order);
 
         return order.getId();
     }
@@ -42,4 +43,8 @@ public class OrderService {
         order.cancel();
     }
     // 검색
+
+//    public int search(OrderSearch orderSearch){
+//        return orderRepository.findAll(orderSearch);
+//    }
 }

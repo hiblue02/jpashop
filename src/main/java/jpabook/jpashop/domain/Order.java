@@ -78,4 +78,5 @@ public class Order {
     public int getTotalPrice(){
         return this.orderItems.stream().mapToInt(OrderItem::getTotalPrice).sum();
     }
+
 }
