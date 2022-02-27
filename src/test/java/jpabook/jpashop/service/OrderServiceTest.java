@@ -29,7 +29,7 @@ class OrderServiceTest {
 
     @Test
     @Transactional
-    public void 상품주문() throws Exception{
+    public void 상품주문() {
         //조건
         Member member = new Member("kim", 20);
         member.setAddress(new Address("태평양", "해협", "12345"));
@@ -84,15 +84,15 @@ class OrderServiceTest {
                 .writer("kim")
                 .stockQuantity(100)
                 .price(12000)
-                .category(category)
                 .build();
+        book.addCategory(category);
         itemService.saveItem(book);
         return book;
     }
 
     @Test
     @Transactional
-    public void 주문취소() throws Exception{
+    public void 주문취소() {
         //조건
         Member member = createMember();
         Category category = createCategory();

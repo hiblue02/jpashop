@@ -30,6 +30,11 @@ public abstract class Item extends BaseEntity{
     @Setter
     private List<Category> categories = new java.util.ArrayList<>();
 
+    public Item(String name, int stockQuantity, int price) {
+        this.name = name;
+        this.stockQuantity = stockQuantity;
+        this.price = price;
+    }
 
     public void addCategory(Category category){
         this.categories.add(category);

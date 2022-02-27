@@ -4,9 +4,12 @@ import jpabook.jpashop.domain.*;
 import jpabook.jpashop.repository.ItemRepository;
 import jpabook.jpashop.repository.MemberRepository;
 import jpabook.jpashop.repository.OrderRepository;
+import jpabook.jpashop.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -38,13 +41,14 @@ public class OrderService {
         return order.getId();
     }
     // 취소
+    @Transactional
     public void cancel(Long orderId){
         Order order = orderRepository.findOne(orderId);
         order.cancel();
     }
     // 검색
 
-//    public int search(OrderSearch orderSearch){
-//        return orderRepository.findAll(orderSearch);
-//    }
+    public List<Order> findOrders(OrderSearch orderSearch){
+        return orderRepository.findAllByString(orderSearch);
+    }
 }
