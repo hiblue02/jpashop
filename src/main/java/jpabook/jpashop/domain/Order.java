@@ -26,7 +26,7 @@ public class Order {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -71,7 +71,7 @@ public class Order {
         }
 
         this.setStatus(OrderStatus.CANCEL);
-        this.orderItems.forEach(a->a.cancel());
+        this.orderItems.forEach(OrderItem::cancel);
     }
 
     /** 조회 로직 **/

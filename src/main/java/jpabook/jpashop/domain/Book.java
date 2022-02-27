@@ -9,20 +9,18 @@ import java.util.List;
 
 
 @Entity
-@Getter
+@Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Book extends Item {
-    @Setter
+
     private String writer;
 
 
-
     @Builder
-    public Book(String name, int stockQuantity, int price, Category category, String writer) {
+    public Book(@NonNull String name, @NonNull int stockQuantity, @NonNull int price, String writer) {
         this.setName(name);
         this.setStockQuantity(stockQuantity);
         this.setPrice(price);
-        this.addCategory(category);
         this.writer = writer;
     }
 

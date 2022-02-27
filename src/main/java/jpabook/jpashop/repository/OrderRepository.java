@@ -3,6 +3,7 @@ package jpabook.jpashop.repository;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.domain.QMember;
@@ -18,9 +19,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderRepository {
     private final EntityManager em;
-    private final QOrder order = QOrder.order;
-    private final QMember member = QMember.member;
-    private JPAQuery<Order> query = new JPAQuery<>(em);
+    private QOrder order ;
+    private QMember member ;
+    private JPAQuery<Order> query;
 
     public Order findOne(Long id){
         return em.find(Order.class, id);
@@ -31,7 +32,11 @@ public class OrderRepository {
     }
 
     //queryD
-    public List<Order> findAll(OrderSearch orderSearch){
+    public List<Order> findAllByString(OrderSearch orderSearch){
+
+        order = QOrder.order;
+        member = QMember.member;
+        query = new JPAQuery<>(em);
 
         return query
                 .select(order)

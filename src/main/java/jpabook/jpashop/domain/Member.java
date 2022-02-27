@@ -29,4 +29,10 @@ public class Member extends BaseEntity {
         this.name = name;
         this.age = age;
     }
+
+    @Builder
+    public Member(String name, Address address) {
+        this.name = name;
+        this.address = address;
+    }
 }
