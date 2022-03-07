@@ -3,6 +3,7 @@ package jpabook.jpashop.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,8 @@ public class Member extends BaseEntity {
     @Column(name = "member_id", nullable = false)
     private Long id;
 
+    @NotEmpty
+    @Setter
     private String name;
     private int age;
 
