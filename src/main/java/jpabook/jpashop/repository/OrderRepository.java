@@ -1,9 +1,7 @@
 package jpabook.jpashop.repository;
 
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.domain.QMember;
@@ -61,4 +59,11 @@ public class OrderRepository {
         }
         return order.status.eq(orderStatus);
     }
+
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery("select o from Order o "
+                            +"join fetch o.member m "
+                            +"join fetch o.delivery d", Order.class).getResultList();
+    }
+
 }
