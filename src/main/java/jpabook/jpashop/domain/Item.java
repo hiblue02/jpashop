@@ -17,15 +17,19 @@ public abstract class Item extends BaseEntity{
     @GeneratedValue
     @Column(name = "item_id", nullable = false)
     private Long id;
+
     @Column
     @Setter
     private String name;
+
     @Column
     @Setter
     private int stockQuantity;
+
     @Column
     @Setter
     private int price;
+
     @ManyToMany(mappedBy = "items")
     @Setter
     private List<Category> categories = new java.util.ArrayList<>();
